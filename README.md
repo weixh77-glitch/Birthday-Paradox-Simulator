@@ -1,2 +1,25 @@
-# Birthday-Paradox-Simulator
-A Python desktop app that demonstrates the birthday paradox. Enter a group size to generate random birthdays, spot shared dates, and compare theoretical probabilities with results from 10,000 Monte Carlo trials. With just 23 people, the chance of a shared birthday is 50.73%. Built with Tkinter and no third-party dependencies.
+# 生日悖论
+
+输入一组人数，程序会随机生成每个人的生日，标出重复日期，并画出「至少两个人同一天生日」的概率曲线。
+
+## 运行
+
+使用带 Tkinter 的 Python 3，无需安装第三方库。在项目目录运行：
+
+```bash
+python birthday_paradox.py
+```
+
+启动时在弹窗中输入人数。主窗口显示本次生日样本，可修改人数或再次点击「生成生日」抽样。
+
+## 概率怎么计算
+
+假设生日独立且均匀分布在一年 365 天中，忽略闰日。理论概率等于 1 减去所有人生日都不同的概率：
+
+```text
+P(至少两人同一天生日) = 1 - (365/365) × (364/365) × … × ((366-n)/365)
+```
+
+23 人时理论概率约为 **50.73%**。366 人及以上时概率为 **100%**。
+
+模拟曲线来自 10,000 次随机试验。每次记录首次出现重复生日时的人数，再统计在给定人数以内已经出现重复的试验比例。列表中的生日是一组单独展示的随机样本。
