@@ -1,25 +1,25 @@
-# 生日悖论
+# Birthday Paradox Simulator
 
-输入一组人数，程序会随机生成每个人的生日，标出重复日期，并画出「至少两个人同一天生日」的概率曲线。
+This Python desktop app demonstrates the probability that at least two people in a group share a birthday. Enter a group size to generate random birthdays, see which dates repeat, and compare theoretical and simulated probabilities on a chart.
 
-## 运行
+## Run the app
 
-使用带 Tkinter 的 Python 3，无需安装第三方库。在项目目录运行：
+You need Python 3 with Tkinter. No third-party packages are required. Run this command from the project directory:
 
 ```bash
 python birthday_paradox.py
 ```
 
-启动时在弹窗中输入人数。主窗口显示本次生日样本，可修改人数或再次点击「生成生日」抽样。
+When prompted, enter a group size from 1 to 10,000. The main window displays the randomly generated birthdays and marks any shared dates. To draw a fresh sample, edit the group size if needed and click the generate button. The app interface is in Chinese.
 
-## 概率怎么计算
+## How the probabilities are calculated
 
-假设生日独立且均匀分布在一年 365 天中，忽略闰日。理论概率等于 1 减去所有人生日都不同的概率：
+The model assumes that birthdays are independent and uniformly distributed across 365 days, excluding February 29. For a group of `n` people, the probability of at least one shared birthday is one minus the probability that all birthdays are different:
 
 ```text
-P(至少两人同一天生日) = 1 - (365/365) × (364/365) × … × ((366-n)/365)
+P(at least one shared birthday) = 1 - (365/365) x (364/365) x ... x ((366 - n)/365)
 ```
 
-23 人时理论概率约为 **50.73%**。366 人及以上时概率为 **100%**。
+With **23 people**, the theoretical probability is about **50.73%**. With **366 or more people**, a shared birthday is guaranteed.
 
-模拟曲线来自 10,000 次随机试验。每次记录首次出现重复生日时的人数，再统计在给定人数以内已经出现重复的试验比例。列表中的生日是一组单独展示的随机样本。
+The simulation runs 10,000 trials. Each trial records the group size at which the first shared birthday appears. For any group size, the simulated probability is the fraction of trials in which a shared birthday has appeared by that size. The birthdays shown in the table come from a separate random sample.
